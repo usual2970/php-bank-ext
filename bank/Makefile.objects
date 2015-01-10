@@ -1,0 +1,8 @@
+bank.lo: /root/lnmp1.0-full/php-5.4.28/ext/bank/bank.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/root/lnmp1.0-full/php-5.4.28/ext/bank $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /root/lnmp1.0-full/php-5.4.28/ext/bank/bank.c -o bank.lo 
+$(phplibdir)/bank.la: ./bank.la
+	$(LIBTOOL) --mode=install cp ./bank.la $(phplibdir)
+
+./bank.la: $(shared_objects_bank) $(BANK_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_bank) $(BANK_SHARED_LIBADD)
+

@@ -1,0 +1,15 @@
+struct {
+    union {
+        long lval;
+        double dval;
+        struct {
+            char *val;
+            int len;
+        } str;
+        HashTable *ht;
+        zend_object_value obj;
+    } value;
+    zend_uint refcount;
+    zend_uchar type;
+    zend_uchar is_ref;
+} zval;
